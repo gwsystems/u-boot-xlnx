@@ -425,7 +425,13 @@
 	"distro_bootcmd=" BOOTENV_SET_SCSI_NEED_INIT                      \
 		"for target in ${boot_targets}; do "                      \
 			"run bootcmd_${target}; "                         \
-		"done\0"
+		"done\0"                                                  \
+	\
+	"cosboot="                                                        \
+		"mmc dev 0;"                                              \
+		"ext2load mmc 0 00100000 cos.img.bin;"                    \
+		"go 00100000;"                                            \
+		"\0"
 
 #ifndef CONFIG_BOOTCOMMAND
 #define CONFIG_BOOTCOMMAND "run distro_bootcmd"
